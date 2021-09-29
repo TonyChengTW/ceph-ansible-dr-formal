@@ -273,8 +273,7 @@
 - include_tasks: configure_grafana_layouts.yml
   with_items: '{{ grafana_server_addrs }}'
   vars:
-    #grafana_server_addr: '{{ item }}'
-    grafana_server_addr: '{{ hostvars[node_name].ansible_eth0.ipv4.address }}'
+    grafana_server_addr: '{{ item }}'
 
 - name: config monitoring api url vip
   run_once: true

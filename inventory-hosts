@@ -1,0 +1,48 @@
+dr-newctrl1 ansible_ssh_host=172.28.22.11 ansible_ssh_user='root' ansible_ssh_private_key_file='./id_rsa' ansible_ssh_port=22
+dr-newctrl2 ansible_ssh_host=172.28.22.12 ansible_ssh_user='root' ansible_ssh_private_key_file='./id_rsa' ansible_ssh_port=22
+dr-newctrl3 ansible_ssh_host=172.28.22.13 ansible_ssh_user='root' ansible_ssh_private_key_file='./id_rsa' ansible_ssh_port=22
+dr-newcp1 ansible_ssh_host=172.28.22.21 ansible_ssh_user='root' ansible_ssh_private_key_file='./id_rsa' ansible_ssh_port=22
+dr-newcp2 ansible_ssh_host=172.28.22.22 ansible_ssh_user='root' ansible_ssh_private_key_file='./id_rsa' ansible_ssh_port=22
+dr-newcp3 ansible_ssh_host=172.28.22.23 ansible_ssh_user='root' ansible_ssh_private_key_file='./id_rsa' ansible_ssh_port=22
+dr-newcp4 ansible_ssh_host=172.28.22.24 ansible_ssh_user='root' ansible_ssh_private_key_file='./id_rsa' ansible_ssh_port=22
+dr-newcp5 ansible_ssh_host=172.28.22.25 ansible_ssh_user='root' ansible_ssh_private_key_file='./id_rsa' ansible_ssh_port=22
+dr-newcp6 ansible_ssh_host=172.28.22.26 ansible_ssh_user='root' ansible_ssh_private_key_file='./id_rsa' ansible_ssh_port=22
+dr-newcp7 ansible_ssh_host=172.28.22.27 ansible_ssh_user='root' ansible_ssh_private_key_file='./id_rsa' ansible_ssh_port=22
+
+[mons]
+dr-newctrl1 monitor_address=10.29.12.11
+dr-newctrl2 monitor_address=10.29.12.12
+dr-newctrl3 monitor_address=10.29.12.13
+
+[rgws]
+dr-newctrl1
+dr-newctrl2
+dr-newctrl3
+
+[grafana-server]
+dr-newctrl1
+dr-newctrl2
+dr-newctrl3
+
+[osds]
+#dr-newctrl1 devices="['/dev/sdb','/dev/sdc','/dev/sdd','/dev/sde']"
+#dr-newctrl2 devices="['/dev/sdb','/dev/sdc','/dev/sdd','/dev/sde']"
+#dr-newctrl3 devices="['/dev/sdb','/dev/sdc','/dev/sdd','/dev/sde']"
+#dr-newcp1 devices="['/dev/sdb','/dev/sdc']"
+#dr-newcp2 devices="['/dev/sdb','/dev/sdc']"
+#dr-newcp3 devices="['/dev/sdb','/dev/sdc']"
+#dr-newcp4 devices="['/dev/sdb','/dev/sdc']"
+#dr-newcp5 devices="['/dev/sdb','/dev/sdc']"
+#dr-newcp6 devices="['/dev/sdb','/dev/sdc']"
+dr-newcp7 devices="['/dev/sdb','/dev/sdc']"
+
+[mgrs:children]
+mons
+
+[clients:children]
+osds
+
+[monitoring]
+dr-newctrl1
+dr-newctrl2
+dr-newctrl3
